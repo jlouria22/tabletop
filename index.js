@@ -149,7 +149,7 @@ function getRemainingHp(maxHp, currentHp, damage) {
 function canSee(light, vision) {
   // TODO
   if (light === "bright") {
-    return true:
+    return true;
   } else if (light === "dim") {
     return vision === "low-light" || vision === "dark";
   } else {
@@ -171,7 +171,7 @@ function getStrikeDamage(attack, ac, damage) {
   // TODO
   if (doesStrikeCrit(attack, ac)) {
     return damage * 2;
-  } else if (doesStrikeHit) {
+  } else if (doesStrikeHit(attack, ac)) {
     return damage;
   } else {
     return 0;
