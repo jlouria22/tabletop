@@ -6,7 +6,8 @@
  * @returns {boolean} whether the wizard can cast the spell
  */
 function canCastSpell(isSpellPrepared, hasScroll) {
-  // TODO
+  //TO DO
+  return isSpellPrepared || hasScroll;
 }
 
 /**
@@ -18,6 +19,7 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  */
 function isHidden(hiding, aware) {
   // TODO
+  return hiding || !aware;
 }
 
 /**
@@ -29,6 +31,7 @@ function isHidden(hiding, aware) {
  */
 function doesStrikeHit(attack, ac) {
   // TODO
+  return attack >= ac;
 }
 
 /**
@@ -40,6 +43,7 @@ function doesStrikeHit(attack, ac) {
  */
 function doesStrikeCrit(attack, ac) {
   // TODO
+  return attack >= ac + 10;
 }
 
 /**
@@ -52,6 +56,11 @@ function doesStrikeCrit(attack, ac) {
  */
 function heal(maxHp, currentHp, healAmount) {
   // TODO
+  const total = currentHp + healAmount;
+  if (total > maxHp) {
+    return maxHp;
+  }
+  return total;
 }
 
 /**
@@ -72,6 +81,17 @@ function heal(maxHp, currentHp, healAmount) {
  */
 function getProficiencyBonus(level, rank) {
   // TODO
+  if (rank === "trained") {
+    return level + 2;
+  } else if (rank === "expert") {
+    return level + 4;
+  } else if (rank === "master") {
+    return level + 6;
+  } else if (rank === "legendary") {
+    return level + 8;
+  } else {
+    return 0;
+  }
 }
 
 /**
@@ -86,6 +106,13 @@ function getProficiencyBonus(level, rank) {
  */
 function getCoverBonus(behindObstacle, takingCover) {
   // TODO
+  if (!behindObstacle) {
+    return 0;
+  } else if (behindObstacle && takingCover) {
+    return 4;
+  } else if (behindObstacle) {
+    return 2;
+  }
 }
 
 /**
@@ -102,6 +129,13 @@ function getCoverBonus(behindObstacle, takingCover) {
  */
 function getRemainingHp(maxHp, currentHp, damage) {
   // TODO
+  if (damage >= maxHp * 2) {
+    return -1;
+  } else if (currentHp - damage <= 0) {
+    return 0;
+  } else {
+    return currentHp - damage;
+  }
 }
 
 /**
@@ -114,6 +148,13 @@ function getRemainingHp(maxHp, currentHp, damage) {
  */
 function canSee(light, vision) {
   // TODO
+  if (light === "bright") {
+    return true:
+  } else if (light === "dim") {
+    return vision === "low-light" || vision === "dark";
+  } else {
+    return vision === "dark";
+  }
 }
 
 /**
@@ -128,4 +169,11 @@ function canSee(light, vision) {
  */
 function getStrikeDamage(attack, ac, damage) {
   // TODO
+  if (doesStrikeCrit(attack, ac)) {
+    return damage * 2;
+  } else if (doesStrikeHit) {
+    return damage;
+  } else {
+    return 0;
+  }
 }
